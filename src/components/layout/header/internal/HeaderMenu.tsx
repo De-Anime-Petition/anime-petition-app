@@ -3,6 +3,7 @@
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { useRef, useState } from 'react'
 import { useUpdateEffect, useWindowSize } from 'react-use'
 
@@ -13,7 +14,10 @@ const HEADER_TABS = [
 ]
 
 export default function HeaderMenu() {
-  const [activeTab, setActiveTab] = useState(HEADER_TABS[0].value)
+  const pathname = usePathname()
+  const [activeTab, setActiveTab] = useState(() => (
+    HEADER_TABS.find(tab => tab.href === pathname)?.value || HEADER_TABS[0].value
+  ))
   const [indicatorStyle, setIndicatorStyle] = useState({ left: 0, width: 0 })
   const tabsRef = useRef<HTMLDivElement>(null)
   const textRefs = useRef<Record<string, HTMLSpanElement | null>>({})
@@ -46,7 +50,7 @@ export default function HeaderMenu() {
 
   return (
     <Tabs
-      defaultValue={HEADER_TABS[0].value}
+      defaultValue={activeTab}
       className="mx-auto max-w-xl"
       onValueChange={setActiveTab}
     >

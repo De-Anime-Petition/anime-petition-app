@@ -1,7 +1,9 @@
 import type { Metadata } from 'next'
 import { Root } from '@/components/layout/root/Root'
 import { geistMono, geistSans } from '@/lib/fonts'
+import Web3Providers from '@/providers/Web3Providers'
 import '../styles/index.css'
+import '@rainbow-me/rainbowkit/styles.css'
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -18,7 +20,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} h-full max-w-[100vw] antialiased`}
       >
-        <Root>{children}</Root>
+        <Web3Providers>
+          <Root>{children}</Root>
+        </Web3Providers>
       </body>
     </html>
   )

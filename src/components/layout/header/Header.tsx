@@ -1,3 +1,4 @@
+import WalletButton from '@/components/common/WalletButton'
 import { HeaderButton } from './internal/HeaderButton'
 import HeaderMenu from './internal/HeaderMenu'
 import HeaderWithShadow from './internal/HeaderWithShadow'
@@ -14,8 +15,8 @@ export function Header() {
             <HeaderMenu />
           </div>
         </div>
-        <div className="relative flex size-full items-center justify-center">
-          <HeaderButton />
+        <div className="relative flex min-w-36 items-center justify-center">
+          <WalletButton />
         </div>
       </div>
     </HeaderWithShadow>
